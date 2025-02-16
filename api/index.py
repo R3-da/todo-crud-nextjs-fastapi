@@ -27,7 +27,10 @@ class Timer(Base):
 Todo.timers = relationship("Timer", back_populates="todo")
 
 def run_migrations():
-    subprocess.run(["alembic", "upgrade", "head"])
+    if subprocess.run(["which", "alembic"], capture_output=True).returncode == 0:
+        subprocess.run(["alembic", "upgrade", "head"])
+    else:
+        print("Alembic is not installed. Skipping migrations.")
 
 def init_db():
     if not os.path.exists("./database.db"):
