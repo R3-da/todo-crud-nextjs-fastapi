@@ -36,7 +36,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col items-center justify-center w-full max-w-md">
-        <h1 className="text-4xl font-bold mb-8">Todo App</h1>
+        <h1 className="text-4xl font-bold mb-8">Todo Apps</h1>
         <input
           type="text"
           value={newTodo}
