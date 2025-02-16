@@ -33,22 +33,34 @@ def init_db():
     if not os.path.exists("./database.db"):
         Base.metadata.create_all(bind=engine)
         run_migrations()
-        db = SessionLocal()
-        seed_db(db)
+    db = SessionLocal()
+    try:
+        # Check and seed only if needed
+        if db.query(Todo).count() == 0:
+            seed_db(db)
+    finally:
         db.close()
 
 def seed_db(db: Session):
-    # Check if the database is already seeded
-    if db.query(Todo).count() == 0:
-        # Add initial data to the database
-        initial_todos = [
-            {"title": "First Todo"},
-            {"title": "Second Todo"}
-        ]
-        for todo_data in initial_todos:
-            db_todo = Todo(**todo_data)
-            db.add(db_todo)
-        db.commit()
+    # Add initial data to the database
+    initial_todos = [
+        {"title": "First Todo"},
+        {"title": "Second Todo"}
+    ]
+    for todo_data in initial_todos:
+        db_todo = Todo(**todo_data)
+        db.add(db_todo)
+    db.commit()
+
+    # Add initial timers data
+    initial_timers = [
+        {"duration": 30, "todo_id": db.query(Todo).filter(Todo.title == "First Todo").first().id},
+        {"duration": 45, "todo_id": db.query(Todo).filter(Todo.title == "Second Todo").first().id}
+    ]
+    for timer_data in initial_timers:
+        db_timer = Timer(**timer_data)
+        db.add(db_timer)
+    db.commit()
 
 init_db()
 
