@@ -29,7 +29,7 @@ export default function Home() {
   };
   
   const removeTodo = async (id: number) => {
-    const response = await axios.delete(`/api/todos/${id}`);
+    const response = await axios.delete(`/api/todos?id=${id}`);
     if (response.status === 200) {
       fetchTodos();
     }

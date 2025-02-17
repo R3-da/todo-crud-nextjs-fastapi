@@ -37,16 +37,22 @@ export async function POST(req: NextRequest) {
 
 // **DELETE: Remove a todo by ID**
 export async function DELETE(req: NextRequest) {
-  const { id } = await req.json();
-  const data = readData();
-  const todoIndex = data.todos.findIndex(todo => todo.id === Number(id));
-
-  if (todoIndex === -1) {
-    return NextResponse.json({ error: "Todo not found" }, { status: 404 });
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+  
+    if (!id) {
+      return NextResponse.json({ error: "Missing ID" }, { status: 400 });
+    }
+  
+    const data = readData();
+    const todoIndex = data.todos.findIndex(todo => todo.id === Number(id));
+  
+    if (todoIndex === -1) {
+      return NextResponse.json({ error: "Todo not found" }, { status: 404 });
+    }
+  
+    data.todos.splice(todoIndex, 1);
+    writeData(data);
+  
+    return NextResponse.json({ message: "Todo deleted successfully" });
   }
-
-  data.todos.splice(todoIndex, 1);
-  writeData(data);
-
-  return NextResponse.json({ message: "Todo deleted successfully" });
-}
