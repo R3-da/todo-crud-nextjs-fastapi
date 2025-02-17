@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import axios from "axios";
 
 export default function Home() {
   const [todos, setTodos] = useState<string[]>([]);
@@ -12,21 +13,14 @@ export default function Home() {
   }, []);
 
   const fetchTodos = async () => {
-    const response = await fetch("/api/py/todos/");
-    const data = await response.json();
-    setTodos(data.map((todo: { title: string }) => todo.title));
+    const response = await axios.get("/api/py/todos/");
+    setTodos(response.data.map((todo: { title: string }) => todo.title));
   };
 
   const addTodo = async () => {
     if (newTodo.trim()) {
-      const response = await fetch("/api/py/todos/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ title: newTodo.trim() }),
-      });
-      if (response.ok) {
+      const response = await axios.post("/api/py/todos/", { title: newTodo.trim() });
+      if (response.status === 200) {
         fetchTodos();
         setNewTodo("");
       }
