@@ -22,7 +22,6 @@ Before you begin, ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/) (Recommended: v18+)
 - [Python](https://www.python.org/) (Recommended: v3.9+)
-- [FastAPI](https://fastapi.tiangolo.com/)
 
 ## 📦 Installation
 
