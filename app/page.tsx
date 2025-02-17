@@ -1,16 +1,35 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Home() {
   const [todos, setTodos] = useState<string[]>([]);
   const [newTodo, setNewTodo] = useState("");
 
-  const addTodo = () => {
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
+  const fetchTodos = async () => {
+    const response = await fetch("/api/py/todos/");
+    const data = await response.json();
+    setTodos(data.map((todo: { title: string }) => todo.title));
+  };
+
+  const addTodo = async () => {
     if (newTodo.trim()) {
-      setTodos([...todos, newTodo.trim()]);
-      setNewTodo("");
+      const response = await fetch("/api/py/todos/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title: newTodo.trim() }),
+      });
+      if (response.ok) {
+        fetchTodos();
+        setNewTodo("");
+      }
     }
   };
 
