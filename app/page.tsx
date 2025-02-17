@@ -38,13 +38,13 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-start p-24 bg-gradient-to-r from-gray-700 via-gray-900 to-black">
       <div className="fixed top-8 left-0 right-0 z-10 w-full max-w-5xl mx-auto flex items-center justify-center font-mono text-sm lg:flex gap-4">
-        <p className="flex w-full justify-center bg-gradient-to-b pb-6 pt-8 backdrop-blur-2xl dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+        <p className="flex w-full justify-center bg-gradient-to-b pb-6 pt-8 backdrop-blur-2xl dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Get started by editing FastApi API&nbsp;
           <Link href="/api/py/helloFastApi">
             <code className="font-mono font-bold">api/index.py</code>
           </Link>
         </p>
-        <p className="flex w-full justify-center bg-gradient-to-b pb-6 pt-8 backdrop-blur-2xl dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+        <p className="flex w-full justify-center bg-gradient-to-b pb-6 pt-8 backdrop-blur-2xl dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Get started by editing Next.js API&nbsp;
           <Link href="/api/helloNextJs">
             <code className="font-mono font-bold">app/api/helloNextJs</code>
@@ -70,14 +70,14 @@ export default function Home() {
           </button>
           <button
             onClick={fetchTodos}
-            className="w-12 h-12 p-2 bg-green-500 text-white rounded flex items-center justify-center"
+            className="w-16 h-12 bg-green-500 text-white rounded flex items-center justify-center"
           >
             <FaSyncAlt />
           </button>
         </div>
       </div>
       <div className="w-full max-w-md">
-        <ul className="mt-4 w-full h-64 overflow-y-auto bg-white rounded p-4">
+        <ul className="mt-4 w-full h-96 overflow-y-auto bg-gray-100 rounded p-4">
           {todos.map((todo) => (
             <li
               key={todo.id}
