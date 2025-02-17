@@ -14,22 +14,22 @@ export default function Home() {
   }, []);
 
   const fetchTodos = async () => {
-    const response = await axios.get("/api/py/todos/");
+    const response = await axios.get("/api/todos");
     setTodos(response.data);
   };
-
+  
   const addTodo = async () => {
     if (newTodo.trim()) {
-      const response = await axios.post("/api/py/todos/", { title: newTodo.trim() });
+      const response = await axios.post("/api/todos", { title: newTodo.trim() });
       if (response.status === 200) {
         fetchTodos();
         setNewTodo("");
       }
     }
   };
-
+  
   const removeTodo = async (id: number) => {
-    const response = await axios.delete(`/api/py/todos/${id}`);
+    const response = await axios.delete(`/api/todos/${id}`);
     if (response.status === 200) {
       fetchTodos();
     }
