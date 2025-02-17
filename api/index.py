@@ -47,6 +47,16 @@ def read_todos(skip: int = 0, limit: int = 10):
     data = read_data()
     return data["todos"][skip:skip + limit]
 
+@app.delete("/api/py/todos/{todo_id}")
+def delete_todo(todo_id: int):
+    data = read_data()
+    todo_index = next((index for (index, d) in enumerate(data["todos"]) if d["id"] == todo_id), None)
+    if todo_index is None:
+        raise HTTPException(status_code=404, detail="Todo not found")
+    data["todos"].pop(todo_index)
+    write_data(data)
+    return {"message": "Todo deleted successfully"}
+
 @app.post("/api/py/timers/")
 def create_timer(duration: int, todo_id: int):
     data = read_data()

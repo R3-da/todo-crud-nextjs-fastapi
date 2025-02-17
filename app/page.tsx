@@ -5,7 +5,7 @@ import Link from "next/link";
 import axios from "axios";
 
 export default function Home() {
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<{ id: number; title: string }[]>([]);
   const [newTodo, setNewTodo] = useState("");
 
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function Home() {
 
   const fetchTodos = async () => {
     const response = await axios.get("/api/py/todos/");
-    setTodos(response.data.map((todo: { title: string }) => todo.title));
+    setTodos(response.data);
   };
 
   const addTodo = async () => {
@@ -27,8 +27,11 @@ export default function Home() {
     }
   };
 
-  const removeTodo = (index: number) => {
-    setTodos(todos.filter((_, i) => i !== index));
+  const removeTodo = async (id: number) => {
+    const response = await axios.delete(`/api/py/todos/${id}`);
+    if (response.status === 200) {
+      fetchTodos();
+    }
   };
 
   return (
@@ -64,14 +67,14 @@ export default function Home() {
           Add Todo
         </button>
         <ul className="mt-4 w-full">
-          {todos.map((todo, index) => (
+          {todos.map((todo) => (
             <li
-              key={index}
+              key={todo.id}
               className="flex justify-between items-center p-2 border-b border-gray-300"
             >
-              {todo}
+              {todo.title}
               <button
-                onClick={() => removeTodo(index)}
+                onClick={() => removeTodo(todo.id)}
                 className="text-red-500"
               >
                 Remove
