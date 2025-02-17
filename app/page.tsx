@@ -36,7 +36,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start p-24 bg-gradient-to-t from-gray-900 via-gray-900 to-black">
+    <main className="flex min-h-screen flex-col items-center justify-start p-24 bg-gradient-to-t from-gray-950 via-gray-900 to-black">
       <div className="fixed top-8 left-0 right-0 z-10 w-full max-w-5xl mx-auto flex items-center justify-center font-mono text-sm lg:flex gap-4">
         <p className="flex w-full justify-center bg-gradient-to-b pb-6 pt-8 backdrop-blur-2xl dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Get started by editing FastApi API&nbsp;
@@ -58,7 +58,7 @@ export default function Home() {
           type="text"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
-          className="w-full p-2 border border-gray-300 rounded mb-4 text-black"
+          className="w-full p-3 border border-gray-300 rounded mb-4 text-black"
           placeholder="Add a new todo"
         />
         <div className="flex w-full space-x-2">
