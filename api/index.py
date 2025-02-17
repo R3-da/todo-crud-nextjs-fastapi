@@ -2,6 +2,7 @@ import os
 import json
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 DATA_FILE = "./database/database.json"
 
@@ -26,14 +27,17 @@ def write_data(data):
     with open(DATA_FILE, "w") as file:
         json.dump(data, file, indent=4)
 
+class TodoItem(BaseModel):
+    title: str
+
 @app.get("/api/py/helloFastApi")
 def hello_fast_api():
     return {"message": "Hello from FastAPI"}
 
 @app.post("/api/py/todos/")
-def create_todo(title: str):
+def create_todo(todo: TodoItem):
     data = read_data()
-    new_todo = {"id": len(data["todos"]) + 1, "title": title}
+    new_todo = {"id": len(data["todos"]) + 1, "title": todo.title}
     data["todos"].append(new_todo)
     write_data(data)
     return new_todo
