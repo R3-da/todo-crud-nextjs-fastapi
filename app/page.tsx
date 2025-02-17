@@ -35,7 +35,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+    <main className="flex min-h-screen flex-col items-center justify-start p-24 bg-gradient-to-r from-gray-700 via-gray-900 to-black">
       <div className="fixed top-8 left-0 right-0 z-10 w-full max-w-5xl mx-auto flex items-center justify-center font-mono text-sm lg:flex gap-4">
         <p className="flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
           Get started by editing FastApi API&nbsp;
@@ -51,7 +51,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="flex flex-col items-center justify-center w-full max-w-md mt-24">
+      <div className="flex flex-col items-center w-full max-w-md mt-10 mb-8">
         <h1 className="text-4xl font-bold mb-8">Todo Apps</h1>
         <input
           type="text"
@@ -74,11 +74,13 @@ export default function Home() {
             Refresh
           </button>
         </div>
-        <ul className="mt-4 w-full max-h-64 overflow-y-auto">
+      </div>
+      <div className="w-full max-w-md">
+        <ul className="mt-4 w-full max-h-64 overflow-y-auto bg-white rounded p-4">
           {todos.map((todo) => (
             <li
               key={todo.id}
-              className="flex justify-between items-center p-2 border-b border-gray-300"
+              className="flex justify-between items-center p-2 border-b border-gray-300 text-black"
             >
               {todo.title}
               <button
