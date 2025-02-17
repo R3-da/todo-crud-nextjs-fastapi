@@ -53,7 +53,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col items-center w-full max-w-md mt-10 mb-8">
-        <h1 className="text-4xl font-bold mb-8">Todo App</h1>
+        <h1 className="text-3xl font-bold mb-8">Obystech Solutions Todo App</h1>
         <input
           type="text"
           value={newTodo}
@@ -61,27 +61,28 @@ export default function Home() {
           className="w-full p-3 border border-gray-300 rounded mb-4 text-black"
           placeholder="Add a new todo"
         />
-        <div className="flex w-full space-x-2">
-          <button
-            onClick={addTodo}
-            className="w-full p-2 bg-blue-500 text-white rounded"
-          >
-            Add Todo
-          </button>
-          <button
-            onClick={fetchTodos}
-            className="w-16 h-12 bg-green-500 text-white rounded flex items-center justify-center"
-          >
-            <FaSyncAlt />
-          </button>
-        </div>
+      <div className="flex w-full space-x-2">
+        <button
+          onClick={addTodo}
+          className="w-full p-2 bg-cyan-800 hover:bg-cyan-700 text-white rounded"
+        >
+          Add Todo
+        </button>
+        <button
+          onClick={fetchTodos}
+          className="w-16 h-12 bg-teal-800 hover:bg-teal-700 text-white rounded flex items-center justify-center"
+        >
+          <FaSyncAlt />
+        </button>
+      </div>
+
       </div>
       <div className="w-full max-w-md">
-        <ul className="mt-4 w-full h-96 overflow-y-auto bg-gray-100 rounded p-4">
+        <ul className="w-full h-96 overflow-y-auto bg-gray-100 rounded px-5 py-4">
           {todos.map((todo) => (
             <li
               key={todo.id}
-              className="flex justify-between items-center p-2 border-b border-gray-300 text-black"
+              className="flex justify-between items-center p-3 border-b border-gray-300 text-black"
             >
               {todo.title}
               <button
