@@ -76,7 +76,7 @@ export default function Home() {
         </div>
       </div>
       <div className="w-full max-w-md">
-        <ul className="mt-4 w-full max-h-64 overflow-y-auto bg-white rounded p-4">
+        <ul className="mt-4 w-full h-64 overflow-y-auto bg-white rounded p-4">
           {todos.map((todo) => (
             <li
               key={todo.id}
